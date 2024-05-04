@@ -14,8 +14,15 @@ spec:
         app: users
     spec:
       containers:
+        - name: auth
+          image: kodega2016/kube_volume_auth
+          ports:
+            - containerPort: 80
         - name: users
           image: kodega2016/kube_volume_users
           ports:
             - containerPort: 8080
               name: users
+          env:
+            - name: AUTH_ADDRESS
+              value: localhost
