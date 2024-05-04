@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasks-deployment
+  labels:
+    app: tasks
+spec:
+  selector:
+    matchLabels:
+      app: tasks
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tasks
+    spec:
+      containers:
+        - name: tasks
+          image: kodega2016/kube_net_tasks
+          imagePullPolicy: Always
+          env:
+            - name: AUTH_ADDRESS
+              value: auth-cluster-service
+            - name: TASKS_FOLDER
+              value: tasks
+              # valueFrom:
+              #   configMapKeyRef:
+              #     name: tasks-deployment
+              #     key: DB_HOST
+          ports:
+            - containerPort: 8000
+              name: tasks
+      #     volumeMounts:
+      #       - name: localtime
+      #         mountPath: /etc/localtime
+      # volumes:
+      #   - name: localtime
+      #     hostPath:
+      #       path: /usr/share/zoneinfo/Asia/Taipei

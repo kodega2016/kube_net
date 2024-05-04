@@ -20,6 +20,7 @@ spec:
         #     - containerPort: 80
         - name: users
           image: kodega2016/kube_net_users
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
               name: users

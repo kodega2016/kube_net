@@ -67,4 +67,7 @@ app.post("/login", async (req, res) => {
   return res.status(response.status).json({ message: "Logging in failed!" });
 });
 
+// this is for demo
+// console.log("service host:", process.env.AUTH_CLUSTER_SERVICE_SERVICE_HOST);
+
 app.listen(8080);
