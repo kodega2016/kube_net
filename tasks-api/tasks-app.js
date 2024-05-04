@@ -11,6 +11,9 @@ const app = express();
 
 app.use(bodyParser.json());
 
+const cors = require("cors");
+app.use(cors());
+
 const extractAndVerifyToken = async (headers) => {
   if (!headers.authorization) {
     throw new Error("No token provided.");
